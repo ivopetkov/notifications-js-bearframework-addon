@@ -49,7 +49,7 @@ ivoPetkov.bearFrameworkAddons.notifications = ivoPetkov.bearFrameworkAddons.noti
     };
 
     var updatePositions = (justAddedElement) => {
-        var maxWidth = window.innerWidth;
+        var maxWidth = Math.min(window.innerWidth, Math.floor(document.body.getBoundingClientRect().width));
         var bottom = 0;
         var visibleElementsCount = 0;
         for (var elementData of elements) {
