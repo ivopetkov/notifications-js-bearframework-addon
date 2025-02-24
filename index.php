@@ -17,6 +17,7 @@ $app->clientPackages
         $package->addJSCode(include $context->dir . '/assets/notifications.min.js.php');
         //$package->addJSCode(file_get_contents($context->dir . '/dev/notifications.js'));
         $css = '[data-notification]{position:fixed;bottom:0;z-index:999;cursor:default;}';
+        $css .= '[data-notification][data-notification-state="hidden"]{pointer-events:none;}';
         $package->addCSSCode($css);
         $package->get = 'return ivoPetkov.bearFrameworkAddons.notifications';
     });
