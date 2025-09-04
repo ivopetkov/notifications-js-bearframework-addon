@@ -56,8 +56,17 @@ ivoPetkov.bearFrameworkAddons.notifications = ivoPetkov.bearFrameworkAddons.noti
             var element = elementData[1];
             if (isVisible(elementData[0]) || element === justAddedElement) {
                 var rect = element.getBoundingClientRect();
-                element.style.left = ((maxWidth - rect.width) / 2) + 'px';
-                element.style.bottom = 'calc(var(--tooltip-offset-bottom,0) + var(--tooltip-spacing,0)*' + visibleElementsCount + ' + ' + bottom + 'px)';
+                var elementStyle = window.getComputedStyle(element);
+                var offsetLeft = elementStyle.getPropertyValue('--notifications-offset-left');
+                var offsetRight = elementStyle.getPropertyValue('--notifications-offset-right');
+                if (offsetLeft !== '') {
+                    element.style.left = offsetLeft;
+                } else if (offsetRight !== '') {
+                    element.style.right = offsetRight;
+                } else {
+                    element.style.left = ((maxWidth - rect.width) / 2) + 'px';
+                }
+                element.style.bottom = 'calc(var(--notifications-offset-bottom,0) + var(--notifications-spacing,0)*' + visibleElementsCount + ' + ' + bottom + 'px)';
                 bottom += rect.height;
                 visibleElementsCount++;
             }
